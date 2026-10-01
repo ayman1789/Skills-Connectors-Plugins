@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ai Smart Academy - Claude Skills, Connectors & Plugins</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        neonGreen: '#39FF14',
+                        goldenYellow: '#FFD700',
+                        darkBg: '#0a0a0a',
+                        cardBg: '#141414'
+                    },
+                    boxShadow: {
+                        'neon-green': '0 0 15px rgba(57, 255, 20, 0.5)',
+                        'neon-gold': '0 0 15px rgba(255, 215, 0, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #39FF14;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD700;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .glow-text-green {
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
+        }
+        .glow-text-gold {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+        
+        /* Gradient Border */
+        .gradient-border {
+            position: relative;
+            background: #141414;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+            border-radius: 1rem;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(45deg, #39FF14, #FFD700);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="sticky top-0 z-50 bg-black bg-opacity-90 backdrop-blur-md border-b border-neonGreen shadow-neon-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-4">
+                    <img src="https://i.postimg.cc/rFZdmJdR/Chat-GPT-Image-Jun-13-2025-09-31-25-AM.png" alt="Ai Smart Academy Logo" class="h-14 w-auto rounded-full border-2 border-goldenYellow">
+                    <div>
+                        <h1 class="text-2xl font-bold text-white tracking-wide glow-text-green">Ai Smart <span class="text-goldenYellow glow-text-gold">Academy</span></h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <span class="bg-neonGreen/10 text-neonGreen px-4 py-2 rounded-full border border-neonGreen text-sm font-bold">
+                        <i class="fas fa-robot mr-2"></i> كورس Ai Smart man
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-20 pb-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 text-white">
+                    إلى متدربيني في كورس <span class="text-neonGreen glow-text-green block mt-2">Ai Smart man</span>
+                </h2>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+                    أهلاً بكم في هذه المحاضرة الخاصة، حيث سنفكك ونتعمق في أهم أدوات المساعد الذكي Claude وكيفية توظيفها لرفع إنتاجيتنا لأقصى الحدود.
+                </p>
+            </div>
+
+            <!-- Instructor Card -->
+            <div class="gradient-border p-6 md:p-8 max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 fade-in-up delay-100 shadow-neon-gold transition-transform duration-300 hover:scale-[1.02]">
+                <div class="flex-shrink-0 relative">
+                    <div class="absolute inset-0 bg-goldenYellow rounded-full blur-md opacity-30"></div>
+                    <img src="https://i.postimg.cc/YCwbBmKy/a-photorealistic-medium-shot-of-a-man.png" alt="Dr. Ayman Elkady" class="relative h-40 w-40 object-cover rounded-full border-4 border-neonGreen z-10">
+                </div>
+                <div class="text-center md:text-right w-full bg-black/60 p-6 rounded-xl backdrop-blur-sm border border-gray-800">
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-neonGreen mb-3 glow-text-green">Dr. Ayman Elkady</h3>
+                    <ul class="text-gray-100 space-y-3 text-sm md:text-base font-semibold">
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-certificate text-goldenYellow ml-3 text-lg"></i>
+                            <span>Ai Smart academy Owner</span>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-certificate text-goldenYellow ml-3 text-lg"></i>
+                            <span>Certified Trainer in <span class="text-neonGreen">AASTMT</span> & <span class="text-neonGreen">Al-Sadat Academy</span></span>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-certificate text-goldenYellow ml-3 text-lg"></i>
+                            <span>Certified Trainer in <span class="text-neonGreen">YAT Learning Center</span>  <span class="text-neonGreen"></span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+            <div class="absolute top-1/4 -right-20 w-72 h-72 bg-neonGreen rounded-full mix-blend-screen filter blur-[100px] opacity-20"></div>
+            <div class="absolute bottom-1/4 -left-20 w-72 h-72 bg-goldenYellow rounded-full mix-blend-screen filter blur-[100px] opacity-10"></div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="text-center mb-16 fade-in-up delay-200">
+            <h2 class="inline-block text-3xl font-bold border-b-4 border-goldenYellow pb-2 glow-text-gold">
+                الشرح التفصيلي: Skills vs Connectors vs Plugins
+            </h2>
+            <p class="mt-4 text-gray-400 max-w-3xl mx-auto">
+                بناءً على الشرح التقني المتخصص، إليكم الفروق الجوهرية وكيفية استخدام كل ميزة لبناء بيئة عمل ذكية ومتكاملة.
+            </p>
+        </div>
+
+        <div class="space-y-20">
+            
+            <!-- Section 1: Skills -->
+            <section class="flex flex-col lg:flex-row items-center gap-10 fade-in-up delay-300">
+                <div class="w-full lg:w-1/2">
+                    <div class="relative group rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
+                        <div class="absolute inset-0 bg-neonGreen mix-blend-overlay opacity-20 group-hover:opacity-40 transition-opacity duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Coding Skills" class="w-full h-64 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute bottom-4 right-4 bg-black/80 px-4 py-2 rounded-lg border border-neonGreen z-20">
+                            <span class="text-neonGreen font-bold"><i class="fas fa-brain mr-2"></i> المهارات الثابتة</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-neonGreen/10 border-2 border-neonGreen flex items-center justify-center text-neonGreen text-xl">1</div>
+                        <h3 class="text-3xl font-bold text-white">المهارات <span class="text-neonGreen">(Skills)</span></h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        <strong class="text-goldenYellow">المفهوم:</strong> المهارة هي عبارة عن مجموعة من التعليمات الثابتة والأوامر المحددة (Instructions) التي نلقنها لـ Claude. الغرض منها هو تعليمه كيفية أداء مهمة معينة <span class="text-neonGreen">بنفس الأسلوب والطريقة الدقيقة التي تريدها في كل مرة</span>.
+                    </p>
+                    <div class="bg-cardBg p-5 rounded-xl border-r-4 border-neonGreen">
+                        <h4 class="font-bold text-white mb-3"><i class="fas fa-bullseye text-goldenYellow ml-2"></i>الهدف منها والاستخدامات</h4>
+                        <ul class="space-y-2 text-gray-400 text-sm md:text-base">
+                            <li><i class="fas fa-check text-neonGreen ml-2"></i>أتمتة المهام اليومية المتكررة وتوفير وقتك وجهدك.</li>
+                            <li><i class="fas fa-check text-neonGreen ml-2"></i><strong>أمثلة عملية:</strong> إنشاء مهام لكتابة جمل جاذبة لانستجرام (Hook Generator)، محلل فرص الـ SEO، أداة تلخيص مقالات المدونات، أو متخصص في صياغة عناوين اليوتيوب.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Connectors -->
+            <section class="flex flex-col lg:flex-row-reverse items-center gap-10 fade-in-up">
+                <div class="w-full lg:w-1/2">
+                    <div class="relative group rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
+                        <div class="absolute inset-0 bg-goldenYellow mix-blend-overlay opacity-20 group-hover:opacity-40 transition-opacity duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=800&q=80" alt="Data Connectivity" class="w-full h-64 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute bottom-4 right-4 bg-black/80 px-4 py-2 rounded-lg border border-goldenYellow z-20">
+                            <span class="text-goldenYellow font-bold"><i class="fas fa-plug mr-2"></i> الربط بالبيانات</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-goldenYellow/10 border-2 border-goldenYellow flex items-center justify-center text-goldenYellow text-xl">2</div>
+                        <h3 class="text-3xl font-bold text-white">أدوات الربط <span class="text-goldenYellow">(Connectors)</span></h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        <strong class="text-neonGreen">المفهوم:</strong> هي الخاصية التي تمنح Claude صلاحية الوصول المباشر والتكامل مع التطبيقات التي تستخدمها في عملك اليومي (مثل إعطائه عيوناً ليرى بياناتك الخارجية).
+                    </p>
+                    
+                    <div class="bg-cardBg p-5 rounded-xl border-r-4 border-goldenYellow">
+                        <h4 class="font-bold text-white mb-3"><i class="fas fa-link text-neonGreen ml-2"></i>أبرز التطبيقات وصلاحيات الأمان</h4>
+                        <ul class="space-y-2 text-gray-400 text-sm md:text-base">
+                            <li><i class="fas fa-check text-goldenYellow ml-2"></i><strong>تطبيقات شائعة:</strong> Gmail، تقويم جوجل (Calendar)، Canva وغيرها.</li>
+                            <li><i class="fas fa-check text-goldenYellow ml-2"></i><strong>مثال من الشرح:</strong> ربط Gmail ليقوم الذكاء الاصطناعي بقراءة 10 نشرات بريدية يومياً وتلخيصها في تقرير واحد موجز.</li>
+                            <li><i class="fas fa-shield-alt text-neonGreen ml-2"></i><strong>ملاحظة أمنية هامة:</strong> يجب ضبط "الصلاحيات" بحرص، كالسماح بالقراءة فقط واشتراط الموافقة اليدوية منك قبل إرسال أو حذف أي إيميل.</li>
+                        </ul>
+                    </div>
+
+                    <!-- MCP Explanation Box -->
+                    <div class="bg-[#111] p-5 rounded-xl border-r-4 border-cyan-400 mt-4 relative overflow-hidden group shadow-[0_0_15px_rgba(0,255,255,0.1)]">
+                        <div class="absolute -left-4 -bottom-4 text-cyan-400/5 text-7xl transform group-hover:scale-110 transition-transform duration-500"><i class="fas fa-network-wired"></i></div>
+                        <h4 class="font-bold text-white mb-3 relative z-10"><i class="fas fa-usb text-cyan-400 ml-2"></i> تقنية الـ MCP (المعيار الموحد)</h4>
+                        <div class="space-y-3 text-sm md:text-base text-gray-300 relative z-10">
+                            <p>
+                                مصطلح <strong class="text-cyan-400">MCP</strong> (اختصاراً لـ Model Context Protocol أو بروتوكول سياق النموذج) هو باختصار: معيار برمجي موحد يسمح لنماذج الذكاء الاصطناعي بالاتصال بالبيانات والأدوات الخارجية بأمان وسهولة.
+                            </p>
+                            <p>
+                                أفضل طريقة لفهمه هي تخيله كـ <strong class="text-goldenYellow">"كابل USB-C"</strong> للذكاء الاصطناعي.
+                            </p>
+                            <p class="text-gray-400 text-sm border-t border-gray-800 pt-3">
+                                بدلاً من أن يضطر المطورون لكتابة كود برمجي مختلف لربط الذكاء الاصطناعي بكل تطبيق على حدة (مثل Slack، أو Google Drive، أو قواعد البيانات الخاصة بالشركات)، يوفر MCP "قابس عالمي" موحد يربط الذكاء الاصطناعي بأي أداة تدعم هذا المعيار.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Plugins -->
+            <section class="flex flex-col lg:flex-row items-center gap-10 fade-in-up">
+                <div class="w-full lg:w-1/2">
+                    <div class="relative group rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
+                        <div class="absolute inset-0 bg-white mix-blend-overlay opacity-10 group-hover:opacity-30 transition-opacity duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1581373449483-37449f962b6c?auto=format&fit=crop&w=800&q=80" alt="Software Plugins" class="w-full h-64 md:h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute bottom-4 right-4 bg-black/80 px-4 py-2 rounded-lg border border-gray-400 z-20">
+                            <span class="text-white font-bold"><i class="fas fa-cubes mr-2"></i> الحزم الجاهزة</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 border-2 border-gray-400 flex items-center justify-center text-white text-xl">3</div>
+                        <h3 class="text-3xl font-bold text-white">الإضافات <span class="text-gray-300">(Plugins)</span></h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        <strong class="text-goldenYellow">المفهوم:</strong> الإضافة هي بمثابة <span class="text-neonGreen">"حزمة شاملة جاهزة" (Bundle)</span>. فهي تجمع بين المهارات (Skills) المُعدة مسبقاً وأدوات الربط (Connectors) الخاصة بها في مكان واحد وتثبيت واحد.
+                    </p>
+                    <div class="bg-cardBg p-5 rounded-xl border-r-4 border-gray-500">
+                        <h4 class="font-bold text-white mb-3"><i class="fas fa-box-open text-goldenYellow ml-2"></i>متى نستخدمها؟</h4>
+                        <ul class="space-y-2 text-gray-400 text-sm md:text-base">
+                            <li><i class="fas fa-check text-gray-300 ml-2"></i>تُستخدم للحصول على حلول سريعة لمهام كبرى دون الحاجة لبناء كل شيء من الصفر.</li>
+                            <li><i class="fas fa-check text-gray-300 ml-2"></i><strong>إضافة التسويق (Marketing Plugin):</strong> إضافة ضخمة من Anthropic توفر مهارات لكتابة المحتوى وترتبط تلقائياً بـ Slack, Canva, Figma, Notion وغيرها.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+
+        <!-- Conclusion Box -->
+        <div class="mt-20 fade-in-up">
+            <div class="bg-gradient-to-r from-[#111] via-[#1a1a1a] to-[#111] p-8 rounded-2xl border border-neonGreen/30 shadow-[0_0_30px_rgba(57,255,20,0.15)] relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-9xl text-neonGreen opacity-5"><i class="fas fa-lightbulb"></i></div>
+                <h3 class="text-2xl font-bold text-goldenYellow mb-4 relative z-10"><i class="fas fa-star ml-2"></i> الخلاصة ونصيحة المحاضر</h3>
+                <p class="text-gray-300 text-lg leading-relaxed relative z-10">
+                    للحصول على أقصى تحكم وأفضل تخصيص يناسب عملك الخاص، يُفضل بناء الـ <strong class="text-neonGreen">Skills</strong> الخاصة بك يدوياً وربطها بالـ <strong class="text-neonGreen">Connectors</strong> التي تحتاجها فقط، بدلاً من الاعتماد الكلي على الـ <strong class="text-white">Plugins</strong> الجاهزة التي قد تحتوي على أدوات إضافية لا تحتاجها. بناء منظومتك بنفسك يمنحك التميز والإتقان الذي نبحث عنه في أكاديميتنا.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-[#050505] border-t border-gray-800 mt-12 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="https://i.postimg.cc/rFZdmJdR/Chat-GPT-Image-Jun-13-2025-09-31-25-AM.png" alt="Ai Smart Academy Logo" class="h-10 w-10 rounded-full border border-goldenYellow">
+                <span class="text-gray-400 font-semibold">Ai Smart Academy &copy; 2026</span>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-neonGreen hover:bg-neonGreen hover:text-black transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-goldenYellow hover:bg-goldenYellow hover:text-black transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-neonGreen hover:bg-neonGreen hover:text-black transition-colors duration-300"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="text-sm text-gray-500">
+                Created with <i class="fas fa-heart text-goldenYellow"></i> for Ai Smart man Course
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Trigger animations when elements scroll into view
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach((el) => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
